@@ -504,14 +504,14 @@ void msgpck_write_integer(Stream * s, uint64_t u) {
     msgpck_write_integer(s, (uint32_t) u);
   } else {
     s->write(0xcf);
-    s->write(u >> 56);
-    s->write(u >> 48);
-    s->write(u >> 40);
-    s->write(u >> 32);
-    s->write(u >> 24);
-    s->write(u >> 16);
-    s->write(u >> 8);
-    s->write(u & 0xff);
+    s->write((uint32_t)(u >> 56));
+    s->write((uint32_t)(u >> 48));
+    s->write((uint32_t)(u >> 40));
+    s->write((uint32_t)(u >> 32));
+    s->write((uint32_t)(u >> 24));
+    s->write((uint32_t)(u >> 16));
+    s->write((uint32_t)(u >> 8));
+    s->write((uint32_t)(u & 0xff));
   }
 }
 
@@ -555,14 +555,14 @@ void msgpck_write_integer(Stream * s, int64_t i) {
 		msgpck_write_integer(s, (uint64_t) i);
 	} else if(i < -2147483647) {
       s->write(0xd3);
-      s->write(i >> 56);
-      s->write(i >> 48);
-      s->write(i >> 40);
-      s->write(i >> 32);
-      s->write(i >> 24);
-      s->write(i >> 16);
-      s->write(i >> 8);
-      s->write(i & 0xff);
+      s->write((int32_t)(i >> 56));
+      s->write((int32_t)(i >> 48));
+      s->write((int32_t)(i >> 40));
+      s->write((int32_t)(i >> 32));
+      s->write((int32_t)(i >> 24));
+      s->write((int32_t)(i >> 16));
+      s->write((int32_t)(i >> 8));
+      s->write((int32_t)(i & 0xff));
     } else {
       msgpck_write_integer(s, (int32_t) i);
     }
